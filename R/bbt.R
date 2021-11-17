@@ -85,13 +85,21 @@ bbt_bib <- function(keys, translator = getOption("rbbt.default.translator", "bib
 
   assert_bbt()
   translator <- match.arg(translator, choices = c("csljson", "biblatex", "bibtex", "cslyaml"))
-  result <- bbt_call_json_rpc(
+  if(is.null(library_id)){
+    result <- bbt_call_json_rpc(
+    "item.export",
+    as.list(unique(as.character(keys))),
+    translator
+    )
+  }else{
+    result <- bbt_call_json_rpc(
     "item.export",
     as.list(unique(as.character(keys))),
     translator,
     library_id
-  )
-
+    )
+  }
+  
   if (!is.null(result$error)) {
     stop(result$error$message, call. = FALSE)
   } else {
