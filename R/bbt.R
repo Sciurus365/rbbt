@@ -89,7 +89,8 @@ bbt_bib <- function(keys, translator = getOption("rbbt.default.translator", "bib
     result <- bbt_call_json_rpc(
     "item.export",
     as.list(unique(as.character(keys))),
-    translator
+    translator,
+    library_id = NULL
     )
   }else{
     result <- bbt_call_json_rpc(
