@@ -24,6 +24,7 @@ bbt_update_bib <- function(path_rmd,
     keys = keys,
     ignore = ignore,
     translator = translator,
+    library_id = library_id,
     overwrite = overwrite,
     filter = filter
   )
